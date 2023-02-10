@@ -2,13 +2,15 @@ import React, { memo, useState } from "react"
 import type { FC, ReactElement } from 'react'
 import classNames from "classnames"
 import styles from './index.module.scss'
+import type { ISearchSuggest } from "services/home"
 
 export interface IProps {
- children?: ReactElement
+  children?: ReactElement
+  searchData: ISearchSuggest
 }
 
 const Search: FC<IProps> = function (props) {
-  const { children } = props
+  const { children, searchData } = props
   const [inputFocus, setInputFocus] = useState(false)
 
   const handleKeyDown = (event:  React.KeyboardEvent<HTMLInputElement>) => {
@@ -38,12 +40,11 @@ const Search: FC<IProps> = function (props) {
         <div className={styles.shadow}></div>
           <h2>热门搜索</h2>
           <ul>
-            <li>迪士尼</li>
-            <li>日常元素</li>
-            <li>日常元素</li>
-            <li>日常元素</li>
-            <li>日常元素</li>
-            <li>日常元素</li>
+           {
+           searchData?.configKey && searchData?.configKey.map((item, index) => {
+             return <li key={item[index + 1]}>{ item[index + 1] }</li>
+           })
+          }
           </ul>
       </div>
     </div>
