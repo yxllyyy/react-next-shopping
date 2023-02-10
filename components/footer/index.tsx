@@ -2,7 +2,7 @@ import { memo } from "react"
 import type { FC, ReactElement } from 'react'
 
 export interface IProps {
- children: ReactElement
+ children?: ReactElement
 }
 
 const Footer: FC<IProps> = function (props) {

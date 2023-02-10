@@ -4,7 +4,7 @@ import Footer from '../footer'
 import type { FC, ReactElement } from 'react'
 
 export interface IProps {
- children: ReactElement
+ children?: ReactElement
 }
 
 const Layout: FC<IProps> = function (props) {
