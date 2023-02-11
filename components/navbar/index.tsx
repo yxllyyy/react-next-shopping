@@ -3,7 +3,7 @@ import styles from "./index.module.scss"
 import classNames from "classnames"
 import Link from "next/link"
 import Search from '../search'
-import { useSelector } from "react-redux"
+import { shallowEqual, useSelector } from "react-redux"
 import { IAppRootState } from "@/store/index"
 import type { FC, ReactElement } from 'react'
 
@@ -14,11 +14,12 @@ export interface IProps {
 const NavBar: FC<IProps> = function (props) {
   const { children } = props
 
-  const { navbar } = useSelector((rootState: IAppRootState) => {
+  const { navbar,counter } = useSelector((rootState: IAppRootState) => {
     return {
-     navbar: rootState.home.navbar
+      navbar: rootState.home.navbar,
+      counter: rootState.home.counter
     }
-  })
+  }, shallowEqual)
 
   return (
     <div className={ styles.navbar }>
@@ -31,7 +32,7 @@ const NavBar: FC<IProps> = function (props) {
           <Search searchData={ navbar } />
           <div className={styles['right-cart']}>
             <Link href="/" className={styles.cart}>
-              <span className={styles.count}>0</span>
+              <span className={styles.count}>{counter}</span>
             </Link>
           </div>
           <div className={styles['right-login']}></div>
