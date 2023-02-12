@@ -37,9 +37,49 @@ export interface IHomeInfo {
   digitalData?: any[]
 }
 
+export interface IProduct {
+  id: number;
+  type?: number;
+  name?: string;
+  minPrice: number;
+  maxPrice: number;
+  originalCost?: number;
+  couponLabelDesc?: string;
+  coverUrl?: string;
+}
+
+export interface IHotProduct {
+  id: number;
+  products?: IProduct
+}
+
+export interface IHotproductV2 {
+  count?: number;
+  hasMore?: boolean;
+  hotProduct?: IHotProduct[]
+}
+
+export interface IAllProduct {
+  count?: number;
+  allProduct?: IProduct[]
+}
+
+// 搜索建议的数据
 export const getSearchSuggest = () => {
  return hyRequest.get<IResultData<ISearchSuggest>>("/searchSuggest/get")
 }
+
+// 获取首页数据(如轮播图)
 export const getHomeInfo = () => {
  return hyRequest.get<IResultData<IHomeInfo>>("/home/info")
+}
+
+// 编辑推荐的商品
+export const getHotproduct_v2 = () => {
+  return hyRequest.get<IResultData<IHotproductV2>>("/hotproduct_v2/gets");
+};
+
+// 编辑推荐的商品
+export const getAllProduct = () => {
+ return hyRequest.get<IResultData<IAllProduct>>("/allProduct/gets")
 }
