@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import type { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import wrapper from '@/store/index'
 import { getHomeInfo, getSearchSuggest, getHotproduct_v2, getAllProduct } from 'services/home'
@@ -13,12 +13,13 @@ import type { FC } from 'react'
 import type { IBanner, ICategory, IRecommend, IHotProduct, IAllProduct } from '../services/home'
 import SectionTitle from '@/components/section-title'
 import GridView from '@/components/grid-view'
+import DigitalPanel from '@/components/digital-panel'
 
 interface IProps {
   banners: IBanner[]
   categorys: ICategory[]
   recommends: IRecommend[]
-  digitialData: any[]
+  digitalData: any[]
 
   hotProducts: IHotProduct[]
   allProducts: IAllProduct[]
@@ -29,9 +30,9 @@ const Home: FC<IProps> = (props) => {
     banners = [],
     categorys = [],
     recommends = [],
-    digitialData = [],
     hotProducts = [],
-    allProducts = []
+    allProducts = [],
+    digitalData = []
   } = props
   return (
     <>
@@ -44,7 +45,9 @@ const Home: FC<IProps> = (props) => {
         <Recommend recommends={recommends} />
         <div className={classNames("wrapper", styles.content)}>
           <SectionTitle title='编辑推荐' />
-          <GridView products={hotProducts}  />
+          <GridView products={hotProducts} />
+          {/* 数据面板组件 */}
+          <DigitalPanel itemData={digitalData}/>
           <SectionTitle title='热门精选' />
            <GridView products={allProducts}  />
         </div>

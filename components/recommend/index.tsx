@@ -22,7 +22,7 @@ const Recommend: FC<IProps> = function (props) {
             recommends.map((Recommend) => {
               return (
                <Col key={Recommend.id} span={12}>
-                  <Link href={"/"} className={styles["recommend-item"]}>
+                  <Link href={"/detail?id=" + Recommend.id} className={styles["recommend-item"]}>
                     <Image
                       className={styles.image}
                       src={Recommend.picStr!}

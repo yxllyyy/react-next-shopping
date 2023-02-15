@@ -16,13 +16,9 @@ class HYRequest {
 
     // 全局拦截器
     this.instance.interceptors.request.use((config: AxiosRequestConfig) => {
-      console.log("请求的拦截");
-      // ...
       return config;
     });
     this.instance.interceptors.response.use((res: AxiosResponse) => {
-      console.log("响应的拦截");
-      // ...
       return res;
     });
   }
@@ -51,6 +47,7 @@ class HYRequest {
   }
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default new HYRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
